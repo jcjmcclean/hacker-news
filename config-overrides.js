@@ -10,7 +10,7 @@ module.exports = function override(config, env) {
 			{
 				loader: 'sass-resources-loader',
 				options: {
-					resources: ['./assets/sass/app.scss']
+					resources: ['./src/assets/sass/app.scss']
 				}
 			}
 		]
