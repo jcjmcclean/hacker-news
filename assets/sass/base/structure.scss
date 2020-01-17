@@ -1,0 +1,17 @@
+html {
+	font-size: $font-size-base;
+
+	body {
+		margin: 0;
+		line-height: $line-height-base;
+		font-family: $font-standard;
+		font-size: $font-size-standard;
+		font-weight: $font-weight-regular;
+		background: $color-body;
+		color: $color-text;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+}

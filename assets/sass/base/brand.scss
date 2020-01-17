@@ -1,6 +1,11 @@
+/* COLOURS */
+
 // Black and white
 $color-black: #000000;
 $color-white: #ffffff;
+
+// Page body background
+$color-body: $color-white;
 
 // Neutral background colours
 $color-neutral: #f5f5f5;
@@ -18,3 +23,27 @@ $color-primary-lighter: #ff944d;
 // Link colours
 $color-link: $color-primary-light;
 $color-link-hover: lighten($color-link, 5%);
+
+/* FONTS */
+
+// Standard font to use
+$font-standard: 'Roboto', Arial, Helvetica, Sans-serif;
+
+// Base font size for html element
+$font-base: 14;
+
+// Font sizes
+$font-size-base: $font-base * 1px;
+$font-size-standard: 15 / $font-base * 1rem;
+$font-size-small: 13 / $font-base * 1rem;
+$font-size-large: 20 / $font-base * 1rem;
+$font-size-larger: 25 / $font-base * 1rem;
+$font-size-logo: 30 / $font-base * 1rem;
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Line heights
+$line-height-base: 1;
