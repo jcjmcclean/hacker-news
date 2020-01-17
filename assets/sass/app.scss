@@ -1,2 +1,5 @@
-// Global SASS goes here
-$color-background: green;
+// Import vendor related files here.
+@import '../../node_modules/normalize.css/normalize';
+
+// Branding
+@import 'base/brand';

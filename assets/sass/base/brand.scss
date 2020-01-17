@@ -1,0 +1,20 @@
+// Black and white
+$color-black: #000000;
+$color-white: #ffffff;
+
+// Neutral background colours
+$color-neutral: #f5f5f5;
+
+// Text colours
+$color-text: #000000;
+$color-text-light: #333333;
+$color-text-lighter: #555555;
+
+// Primary brand colours
+$color-primary: #ff6600;
+$color-primary-light: #ff751a;
+$color-primary-lighter: #ff944d;
+
+// Link colours
+$color-link: $color-primary-light;
+$color-link-hover: lighten($color-link, 5%);
