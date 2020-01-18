@@ -14,16 +14,19 @@ export default function PostItemComponent({ post, index }) {
 			<div className="title">
 				<h3>{post.title}</h3>
 				<ul className="list-meta">
-					{/* TODO - dynamic domain */}
-					<li className="item-meta mod-domain">www.domain.com</li>
-					{/* TODO - dynamic posted time */}
-					<li className="item-meta">Posted by {post.by} 5 hours ago</li>
+					{/* TODO - pretty domain */}
+					<li className="item-meta mod-domain">{post.url}</li>
+					{/* TODO - format posted time */}
+					<li className="item-meta">
+						Posted by {post.by} {post.time}
+					</li>
 				</ul>
 			</div>
 			<ul className="list-actions">
 				<li className="item-action">
-					{/* TODO - Comment count */}
 					<img src={iconComments} className="icon-comments" alt="comments" />
+					{/* TODO - Comment count */}
+					{/* {post.descendants} */}
 				</li>
 				<li className="item-action">
 					<img src={iconBookmark} className="icon-bookmark" alt="bookmark" />
