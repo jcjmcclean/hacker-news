@@ -1,10 +1,10 @@
 import React from 'react';
-import './app.component.scss';
+import HeaderComponent from './modules/common/header/header.component';
 
 function App() {
 	return (
 		<>
-			<h1>Hacker News Reader React App</h1>
+			<HeaderComponent />
 		</>
 	);
 }

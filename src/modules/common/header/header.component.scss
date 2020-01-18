@@ -1,0 +1,45 @@
+.header-main {
+	height: 80px;
+	padding-right: 25px;
+	display: flex;
+	align-items: center;
+	background: linear-gradient(
+		90deg,
+		$color-primary-light 0%,
+		$color-primary-lighter 100%
+	);
+
+	.logo {
+		width: 80px;
+		height: 80px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: $color-primary;
+		text-decoration: none;
+
+		.text {
+			color: $color-white;
+			font-size: $font-size-logo;
+			font-weight: $font-weight-bold;
+			transition: transform 0.3s ease-in;
+
+			&:hover {
+				transform: rotate(360deg);
+			}
+		}
+	}
+
+	h1 {
+		margin-left: 25px;
+		color: $color-white;
+		font-size: $font-size-larger;
+		font-weight: $font-weight-medium;
+	}
+
+	.icon-user {
+		width: 35px;
+		height: 35px;
+		margin: 0 0 0 auto;
+	}
+}
