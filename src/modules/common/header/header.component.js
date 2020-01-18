@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './header.component.scss';
-import iconUser from '../../../assets/icons/user.svg';
+import { ReactComponent as IconUser } from '../../../assets/icons/user.svg';
 
 /** Renders header component */
 export default function HeaderComponent() {
@@ -10,7 +10,9 @@ export default function HeaderComponent() {
 				<div className="text">HN</div>
 			</a>
 			<h1>New Stories</h1>
-			<img src={iconUser} className="icon-user" alt="login" />
+			<div className="icon-user">
+				<IconUser />
+			</div>
 		</header>
 	);
 }

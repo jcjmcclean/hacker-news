@@ -31,11 +31,6 @@ li.item-post {
 			margin: 0 0 5px 0;
 			font-size: $font-size-large;
 			font-weight: $font-weight-medium;
-
-			a {
-				color: $color-primary;
-				text-decoration: none;
-			}
 		}
 
 		ul.list-meta {
@@ -81,6 +76,12 @@ li.item-post {
 			[class^='icon-'] {
 				width: 35px;
 				height: 35px;
+				fill: $color-text-lighter;
+
+				svg {
+					width: 100%;
+					height: 100%;
+				}
 			}
 
 			.count {

@@ -1,8 +1,8 @@
 import React from 'react';
 import Moment from 'react-moment';
 import './post-item.component.scss';
-import iconBookmark from '../../../assets/icons/bookmark.svg';
-import iconComments from '../../../assets/icons/comments.svg';
+import { ReactComponent as IconBookmark } from '../../../assets/icons/bookmark.svg';
+import { ReactComponent as IconComments } from '../../../assets/icons/comments.svg';
 
 /** Renders post item component */
 export default function PostItemComponent({ post, index }) {
@@ -50,12 +50,16 @@ export default function PostItemComponent({ post, index }) {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img src={iconComments} className="icon-comments" alt="comments" />
+						<div className="icon-comments">
+							<IconComments />
+						</div>
 					</a>
 					<div className="count">{post.descendants || 0}</div>
 				</li>
 				<li className="item-action">
-					<img src={iconBookmark} className="icon-bookmark" alt="bookmark" />
+					<div className="icon-bookmark">
+						<IconBookmark />
+					</div>
 				</li>
 			</ul>
 		</li>

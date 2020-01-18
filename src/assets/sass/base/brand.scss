@@ -8,7 +8,7 @@ $color-white: #ffffff;
 $color-body: $color-white;
 
 // Neutral background colours
-$color-neutral: #f5f5f5;
+$color-neutral: #f8f8f8;
 
 // Text colours
 $color-text: #000000;
@@ -26,6 +26,7 @@ $color-primary-lighter: #ff944d;
 // Link colours
 $color-link: $color-primary-light;
 $color-link-hover: lighten($color-link, 5%);
+$color-link-active: lighten($color-link, 10%);
 
 /* FONTS */
 
