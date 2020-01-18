@@ -9,7 +9,6 @@ export default function HeaderComponent() {
 			<a href="/" className="logo">
 				<div className="text">HN</div>
 			</a>
-			<h1>New Stories</h1>
 			<nav className="nav-main">
 				<ul className="list-nav">
 					<li className="item-nav">
@@ -20,6 +19,11 @@ export default function HeaderComponent() {
 					<li className="item-nav">
 						<NavLink to="/top" exact activeClassName="mod-active">
 							Top
+						</NavLink>
+					</li>
+					<li className="item-nav">
+						<NavLink to="/saved" exact activeClassName="mod-active">
+							Saved
 						</NavLink>
 					</li>
 				</ul>

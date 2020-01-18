@@ -1,8 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import createPersistedState from 'use-persisted-state';
 import './posts-list.component.scss';
 import PostItemComponent from './post-item/post-item.component';
 import InfiniteScroll from 'react-infinite-scroll-component';
+
+// Persist bookmarks state to local storage
+const BookmarksState = createPersistedState('bookmarks');
 
 /** Renders posts list component */
 export default function PostsListComponent({ mode }) {
@@ -23,13 +27,26 @@ export default function PostsListComponent({ mode }) {
 	// Create state for end of posts
 	const [more, setMore] = React.useState(true);
 
+	// Create bookmarks state
+	const [bookmarks, setBookmarks] = BookmarksState([]);
+
 	/** Get posts data */
 	const fetchData = React.useCallback(
 		async type => {
-			// Get post ids
-			const postIds = await axios.get(
-				'https://hacker-news.firebaseio.com/v0/' + type + 'stories.json'
-			);
+			// Store for ids of posts
+			let postIds;
+
+			// If we need to show saved posts
+			if (type == 'saved') {
+				postIds = {
+					data: bookmarks
+				};
+			} else {
+				// Get post ids from hn
+				postIds = await axios.get(
+					'https://hacker-news.firebaseio.com/v0/' + type + 'stories.json'
+				);
+			}
 
 			// Paginate
 			postIds.data = postIds.data.slice(offset, offset + itemsPerPage);
@@ -109,7 +126,7 @@ export default function PostsListComponent({ mode }) {
 			next={handleScroll}
 			hasMore={more}
 			loader={<p className="loading">Loading...</p>}
-			endMessage={<p className="end">That's all folks!</p>}
+			endMessage={<p className="end">No {mode} posts available.</p>}
 		>
 			{posts.map(function(post, index) {
 				return <PostItemComponent key={index} post={post} index={index} />;

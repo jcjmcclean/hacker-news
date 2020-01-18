@@ -14,6 +14,9 @@ export default function AppComponent() {
 				<Route exact path="/top">
 					<PostsListComponent mode="top" />
 				</Route>
+				<Route exact path="/saved">
+					<PostsListComponent mode="saved" />
+				</Route>
 			</Switch>
 		</Router>
 	);
