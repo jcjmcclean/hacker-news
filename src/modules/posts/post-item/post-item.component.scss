@@ -1,6 +1,7 @@
 li.item-post {
 	display: flex;
 	align-items: center;
+	padding: 15px 0;
 
 	&.mod-alt {
 		background: $color-neutral;
@@ -8,8 +9,8 @@ li.item-post {
 
 	.meta {
 		width: 80px;
-		padding: 14px 0px;
 		display: flex;
+		flex-shrink: 0;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
@@ -39,6 +40,10 @@ li.item-post {
 			padding: 0;
 			list-style: none;
 
+			@include mq(tablet-down) {
+				flex-direction: column;
+			}
+
 			li.item-meta {
 				margin: 0 10px 0 0;
 				padding: 0 10px 0 0;
@@ -61,6 +66,7 @@ li.item-post {
 	}
 
 	ul.list-actions {
+		flex-shrink: 0;
 		margin: 0 0 0 auto;
 		padding: 0 25px 0 0;
 		list-style: none;
@@ -70,11 +76,12 @@ li.item-post {
 		li.item-action {
 			display: flex;
 			align-items: center;
-			margin: 0 0 0 25px;
+			margin: 0;
 			padding: 0;
 
 			[class^='icon-'] {
 				width: 35px;
+				flex-shrink: 0;
 				height: 35px;
 				fill: $color-text-lighter;
 
@@ -86,6 +93,7 @@ li.item-post {
 
 			.count {
 				width: 30px;
+				flex-shrink: 0;
 				margin-left: 8px;
 				font-size: $font-size-small;
 				color: $color-text-light;

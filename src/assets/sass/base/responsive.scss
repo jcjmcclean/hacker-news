@@ -1,0 +1,79 @@
+// Defining all media query strings based on the variables within brand.scss
+$mq-string-mobile: '(max-width: #{$mq-mobile-size})';
+$mq-string-tablet-down: '(max-width: #{$mq-tablet-size})';
+$mq-string-tablet-up: '(min-width: #{$mq-mobile-size})';
+$mq-string-tablet-only: '#{$mq-string-tablet-down} and #{$mq-string-tablet-up}';
+$mq-string-desktop: '(min-width: #{$mq-desktop-size})';
+$mq-string-portrait: '(orientation: portrait)';
+$mq-string-landscape: '(orientation: landscape)';
+$mq-retina: '(min-device-pixel-ratio: 2)';
+
+// Defines a map (object) of values for the media query definitions
+$mq-defs: (
+	mobile: $mq-string-mobile,
+	desktop: $mq-string-desktop,
+	tablet: $mq-string-tablet-only,
+	tablet-down: $mq-string-tablet-down,
+	tablet-up: $mq-string-tablet-up,
+	landscape: $mq-string-landscape,
+	portrait: $mq-string-portrait,
+	retina: $mq-retina,
+	plus: ' or '
+);
+
+// Concatenates multiple mobile queries to be used in one mq() definition
+@function reduce-qsl($list) {
+	$query-string: '';
+	$len: length($list);
+
+	@for $i from 1 through $len {
+		$item: nth($list, $i);
+		$selector: '';
+		$looked-up: true;
+
+		@if map-has_key($mq-defs, $item) {
+			$selector: map-get($mq-defs, $item);
+		} @else {
+			$selector: $item;
+			$looked-up: false;
+		}
+
+		@if $item !=
+			plus and
+			$i !=
+			1 and
+			nth($list, $i - 1) !=
+			plus and
+			$looked-up ==
+			true
+		{
+			$query-string: '#{$query-string} and #{$selector}';
+		} @else if $item == plus {
+			$query-string: '#{$query-string}, ';
+		} @else {
+			$query-string: '#{$query-string} #{$selector}';
+		}
+	}
+
+	// Remove leading ' '
+	$query-string: str-slice($query-string, 2);
+
+	@return $query-string;
+}
+
+// Mixin to allow inline media queries
+@mixin mq($queries) {
+	$query-string: '';
+	$qsl: ();
+
+	@each $query in $queries {
+		$qsl: append($qsl, '#{reduce-qsl($query)}, ');
+	}
+
+	$query-string: '#{reduce-qsl($qsl)}';
+	$query-string: str-slice($query-string, 1, -3);
+
+	@media only screen and #{$query-string} {
+		@content;
+	}
+}
