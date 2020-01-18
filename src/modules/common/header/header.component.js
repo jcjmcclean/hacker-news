@@ -3,7 +3,7 @@ import './header.component.scss';
 import iconUser from '../../../assets/icons/user.svg';
 
 /** Renders header component */
-function HeaderComponent() {
+export default function HeaderComponent() {
 	return (
 		<header className="header-main">
 			<a href="/" className="logo">
@@ -14,5 +14,3 @@ function HeaderComponent() {
 		</header>
 	);
 }
-
-export default HeaderComponent;

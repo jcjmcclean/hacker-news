@@ -1,12 +1,12 @@
 import React from 'react';
 import HeaderComponent from './modules/common/header/header.component';
+import PostsListComponent from './modules/posts/posts-list.component';
 
-function App() {
+export default function AppComponent() {
 	return (
 		<>
 			<HeaderComponent />
+			<PostsListComponent />
 		</>
 	);
 }
-
-export default App;
