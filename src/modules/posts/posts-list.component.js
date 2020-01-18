@@ -5,9 +5,14 @@ import PostItemComponent from './post-item/post-item.component';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 /** Renders posts list component */
-export default function PostsListComponent() {
+export default function PostsListComponent({ mode }) {
 	// Set number of items per page
 	const itemsPerPage = 10;
+
+	// Create ref to store previous mode
+	const prevModeRef = React.useRef();
+	// Set prevmode
+	const prevMode = prevModeRef.current;
 
 	// Create state for pagination
 	const [offset, setOffset] = React.useState(0);
@@ -19,51 +24,51 @@ export default function PostsListComponent() {
 	const [more, setMore] = React.useState(true);
 
 	/** Get posts data */
-	const fetchData = React.useCallback(async () => {
-		// Get post ids
-		const postIds = await axios.get(
-			'https://hacker-news.firebaseio.com/v0/topstories.json'
-		);
-
-		// Cut posts array down to 20 items
-		// postIds.data.splice(20); // TODO - Remove!
-
-		// Paginate
-		postIds.data = postIds.data.slice(offset, offset + itemsPerPage);
-
-		// If we don't have any more posts
-		if (!postIds.data.length) {
-			// Set this to the end of the list, so we don't try to load more
-			setMore(false);
-			return;
-		}
-
-		// Loop through each post id
-		postIds.data.map(async postId => {
-			// Get data for post
-			const postResponse = await axios.get(
-				'https://hacker-news.firebaseio.com/v0/item/' + postId + '.json'
+	const fetchData = React.useCallback(
+		async type => {
+			// Get post ids
+			const postIds = await axios.get(
+				'https://hacker-news.firebaseio.com/v0/' + type + 'stories.json'
 			);
 
-			// If we have a response
-			if (postResponse && postResponse.data) {
-				// Set post from response data
-				const post = postResponse.data;
+			// Paginate
+			postIds.data = postIds.data.slice(offset, offset + itemsPerPage);
 
-				// If this is a link post
-				if (post.url) {
-					// Get domain and add to post
-					const matches = post.url.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
-					post.domain = matches && matches[1];
-				}
-
-				// Push to posts array
-				posts.push(post);
-				// Set posts state
-				setPosts([...posts]);
+			// If we don't have any more posts
+			if (!postIds.data.length) {
+				// Set this to the end of the list, so we don't try to load more
+				setMore(false);
+				return;
 			}
-		});
-	}, [offset, posts]);
+
+			// Loop through each post id
+			postIds.data.map(async postId => {
+				// Get data for post
+				const postResponse = await axios.get(
+					'https://hacker-news.firebaseio.com/v0/item/' + postId + '.json'
+				);
+
+				// If we have a response
+				if (postResponse && postResponse.data) {
+					// Set post from response data
+					const post = postResponse.data;
+
+					// If this is a link post
+					if (post.url) {
+						// Get domain and add to post
+						const matches = post.url.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
+						post.domain = matches && matches[1];
+					}
+
+					// Push to posts array
+					posts.push(post);
+					// Set posts state
+					setPosts([...posts]);
+				}
+			});
+		},
+		[offset, posts]
+	);
 
 	/** Handle load more on scroll */
 	const handleScroll = () => {
@@ -73,9 +78,30 @@ export default function PostsListComponent() {
 
 	// On component mount
 	React.useEffect(() => {
-		fetchData();
-		// eslint-disable-next-line
+		// If offset change isn't due to a mode change
+		if (!prevMode || prevMode === mode) {
+			fetchData(mode);
+		}
 	}, [offset]);
+
+	// On component mount
+	React.useEffect(() => {
+		// Update prev mode
+		prevModeRef.current = mode;
+
+		// If mode has changed from previous
+		if (prevMode && prevMode !== mode) {
+			// Reset posts array
+			posts.length = 0;
+			setPosts(posts);
+
+			// Reset offset
+			setOffset(0);
+
+			// Fetch data again
+			fetchData(mode);
+		}
+	}, [mode]);
 
 	return (
 		<InfiniteScroll
@@ -86,7 +112,7 @@ export default function PostsListComponent() {
 			endMessage={<p className="end">That's all folks!</p>}
 		>
 			{posts.map(function(post, index) {
-				return <PostItemComponent key={post.id} post={post} index={index} />;
+				return <PostItemComponent key={index} post={post} index={index} />;
 			})}
 		</InfiniteScroll>
 	);
