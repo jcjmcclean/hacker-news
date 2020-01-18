@@ -22,11 +22,11 @@ export default function PostsListComponent() {
 	const fetchData = React.useCallback(async () => {
 		// Get post ids
 		const postIds = await axios.get(
-			'https://hacker-news.firebaseio.com/v0/newstories.json'
+			'https://hacker-news.firebaseio.com/v0/topstories.json'
 		);
 
 		// Cut posts array down to 20 items
-		postIds.data.splice(20); // TODO - Remove!
+		// postIds.data.splice(20); // TODO - Remove!
 
 		// Paginate
 		postIds.data = postIds.data.slice(offset, offset + itemsPerPage);
@@ -41,14 +41,27 @@ export default function PostsListComponent() {
 		// Loop through each post id
 		postIds.data.map(async postId => {
 			// Get data for post
-			const post = await axios.get(
+			const postResponse = await axios.get(
 				'https://hacker-news.firebaseio.com/v0/item/' + postId + '.json'
 			);
 
-			// Push to posts array
-			posts.push(post.data);
-			// Set posts state
-			setPosts([...posts]);
+			// If we have a response
+			if (postResponse && postResponse.data) {
+				// Set post from response data
+				const post = postResponse.data;
+
+				// If this is a link post
+				if (post.url) {
+					// Get domain and add to post
+					const matches = post.url.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
+					post.domain = matches && matches[1];
+				}
+
+				// Push to posts array
+				posts.push(post);
+				// Set posts state
+				setPosts([...posts]);
+			}
 		});
 	}, [offset, posts]);
 
@@ -61,6 +74,7 @@ export default function PostsListComponent() {
 	// On component mount
 	React.useEffect(() => {
 		fetchData();
+		// eslint-disable-next-line
 	}, [offset]);
 
 	return (

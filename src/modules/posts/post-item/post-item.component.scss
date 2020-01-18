@@ -8,7 +8,7 @@ li.item-post {
 
 	.meta {
 		width: 80px;
-		height: 80px;
+		padding: 14px 0px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -39,18 +39,27 @@ li.item-post {
 		}
 
 		ul.list-meta {
+			display: flex;
 			margin: 0;
 			padding: 0;
 			list-style: none;
 
 			li.item-meta {
-				margin: 0 0 2px 0;
-				padding: 0;
+				margin: 0 10px 0 0;
+				padding: 0 10px 0 0;
+				border-right: 1px solid $color-borders;
 				font-size: $font-size-small;
 				color: $color-text-light;
 
-				&.mod-domain {
-					color: $color-text-lighter;
+				&:last-child {
+					margin-right: 0;
+					padding-right: 0;
+					border-right: none;
+				}
+
+				a {
+					color: $color-text-light;
+					text-decoration: none;
 				}
 			}
 		}
@@ -64,12 +73,21 @@ li.item-post {
 		align-items: center;
 
 		li.item-action {
+			display: flex;
+			align-items: center;
 			margin: 0 0 0 25px;
 			padding: 0;
 
 			[class^='icon-'] {
 				width: 35px;
 				height: 35px;
+			}
+
+			.count {
+				width: 30px;
+				margin-left: 8px;
+				font-size: $font-size-small;
+				color: $color-text-light;
 			}
 		}
 	}
