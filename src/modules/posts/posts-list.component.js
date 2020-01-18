@@ -126,7 +126,7 @@ export default function PostsListComponent({ mode }) {
 			next={handleScroll}
 			hasMore={more}
 			loader={<p className="loading">Loading...</p>}
-			endMessage={<p className="end">No {mode} posts available.</p>}
+			endMessage={<p className="end">End of {mode} posts.</p>}
 		>
 			{posts.map(function(post, index) {
 				return <PostItemComponent key={index} post={post} index={index} />;

@@ -1,0 +1,7 @@
+.wrapper {
+	padding-top: 80px;
+
+	@include mq(tablet-down) {
+		padding-top: 60px;
+	}
+}

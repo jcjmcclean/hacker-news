@@ -3,6 +3,10 @@ li.item-post {
 	align-items: center;
 	padding: 15px 0;
 
+	@include mq(tablet-down) {
+		padding: 10px 0;
+	}
+
 	&.mod-alt {
 		background: $color-neutral;
 	}
@@ -15,6 +19,11 @@ li.item-post {
 		align-items: center;
 		justify-content: center;
 
+		@include mq(tablet-down) {
+			width: 50px;
+			margin: 0 5px;
+		}
+
 		.score {
 			font-size: $font-size-large;
 			color: $color-text-lighter;
@@ -23,6 +32,10 @@ li.item-post {
 
 	.title {
 		padding: 0 25px;
+
+		@include mq(tablet-down) {
+			padding: 0 10px;
+		}
 
 		h3 {
 			margin: 0 0 5px 0;
@@ -47,6 +60,12 @@ li.item-post {
 				font-size: $font-size-small;
 				color: $color-text-light;
 
+				@include mq(tablet-down) {
+					margin: 0;
+					padding: 0;
+					border: none;
+				}
+
 				&:last-child {
 					margin-right: 0;
 					padding-right: 0;
@@ -69,6 +88,10 @@ li.item-post {
 		display: flex;
 		align-items: center;
 
+		@include mq(tablet-down) {
+			padding: 0 10px;
+		}
+
 		li.item-action {
 			margin: 0;
 			padding: 0;
@@ -90,18 +113,23 @@ li.item-post {
 				.count {
 					width: 30px;
 					flex-shrink: 0;
-					margin-left: 8px;
+					margin-left: 7px;
 					font-size: $font-size-small;
 					color: $color-text-light;
 				}
 			}
 
 			[class^='icon-'] {
-				width: 35px;
+				width: 30px;
+				height: 30px;
 				flex-shrink: 0;
-				height: 35px;
 				fill: $color-text-lighter;
 				cursor: pointer;
+
+				@include mq(tablet-down) {
+					width: 25px;
+					height: 25px;
+				}
 
 				&:hover {
 					fill: $color-primary;
