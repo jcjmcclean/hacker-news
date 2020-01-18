@@ -1,5 +1,6 @@
-ul.list-posts {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+p.loading,
+p.end {
+	padding: 40px 0;
+	text-align: center;
+	font-size: $font-size-larger;
 }

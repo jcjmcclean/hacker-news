@@ -12,7 +12,12 @@ export default function PostItemComponent({ post, index }) {
 				<div className="score">{post.score}p</div>
 			</div>
 			<div className="title">
-				<h3>{post.title}</h3>
+				<h3>
+					{/* TODO - link to comments if post.url not set */}
+					<a href={post.url} target="_blank" rel="noopener noreferrer">
+						{post.title}
+					</a>
+				</h3>
 				<ul className="list-meta">
 					{/* TODO - pretty domain */}
 					<li className="item-meta mod-domain">{post.url}</li>

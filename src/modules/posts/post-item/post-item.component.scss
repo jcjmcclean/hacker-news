@@ -31,7 +31,11 @@ li.item-post {
 			margin: 0 0 5px 0;
 			font-size: $font-size-large;
 			font-weight: $font-weight-medium;
-			color: $color-primary;
+
+			a {
+				color: $color-primary;
+				text-decoration: none;
+			}
 		}
 
 		ul.list-meta {
