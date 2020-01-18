@@ -9,11 +9,12 @@ $color-body: $color-white;
 
 // Neutral background colours
 $color-neutral: #f8f8f8;
+$color-neutral-light: #fafafa;
 
 // Text colours
 $color-text: #000000;
-$color-text-light: #333333;
-$color-text-lighter: #555555;
+$color-text-light: #666666;
+$color-text-lighter: #aaaaaa;
 
 // Border colour
 $color-borders: #cccccc;
@@ -40,14 +41,13 @@ $font-base: 14;
 $font-size-base: $font-base * 1px;
 $font-size-standard: 15 / $font-base * 1rem;
 $font-size-small: 13 / $font-base * 1rem;
-$font-size-large: 18 / $font-base * 1rem;
+$font-size-large: 16 / $font-base * 1rem;
 $font-size-larger: 22 / $font-base * 1rem;
 $font-size-logo: 28 / $font-base * 1rem;
 
 // Font weights
 $font-weight-regular: 400;
-$font-weight-medium: 500;
-$font-weight-bold: 700;
+$font-weight-bold: 600;
 
 // Line heights
 $line-height-base: 1.15;

@@ -70,13 +70,6 @@ export default function PostsListComponent({ mode }) {
 					// Set post from response data
 					const post = postResponse.data;
 
-					// If this is a link post
-					if (post.url) {
-						// Get domain and add to post
-						const matches = post.url.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
-						post.domain = matches && matches[1];
-					}
-
 					// Push to posts array
 					posts.push(post);
 					// Set posts state

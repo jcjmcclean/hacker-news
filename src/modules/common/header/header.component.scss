@@ -1,5 +1,6 @@
 .header-main {
 	width: 100%;
+	padding: 0 10%;
 	display: flex;
 	align-items: center;
 	justify-content: stretch;
@@ -12,19 +13,18 @@
 	top: 0;
 	left: 0;
 
+	@include mq(tablet-down) {
+		padding: 0;
+	}
+
 	.logo {
-		width: 80px;
-		height: 80px;
+		height: 50px;
+		padding: 0 5px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background: $color-primary;
 		text-decoration: none;
-
-		@include mq(tablet-down) {
-			width: 60px;
-			height: 60px;
-		}
 
 		.text {
 			color: $color-white;
@@ -34,6 +34,10 @@
 
 			&:hover {
 				transform: rotate(360deg);
+			}
+
+			.brackets {
+				font-weight: $font-weight-regular;
 			}
 		}
 	}
@@ -53,7 +57,6 @@
 			li.item-nav {
 				margin: 0;
 				padding: 0;
-				font-size: $font-size-large;
 
 				@include mq(tablet-down) {
 					flex-grow: 1;
@@ -66,19 +69,18 @@
 				a {
 					width: 100%;
 					display: block;
-					padding: 27px 30px;
-					border-bottom: 5px solid transparent;
-					color: $color-white;
+					padding: 16px 30px;
+					color: $color-neutral-light;
 					text-align: center;
 					transition: all 0.2s ease;
 
 					@include mq(tablet-down) {
-						padding: 18px 0;
+						padding: 16px 0;
 					}
 
 					&:hover,
 					&.mod-active {
-						border-color: $color-white;
+						background: rgba($color-white, 0.15);
 					}
 				}
 			}

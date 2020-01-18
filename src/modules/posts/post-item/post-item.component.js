@@ -18,8 +18,15 @@ export default function PostItemComponent({ post, index }) {
 	const handleBookmark = postId => {
 		// If post exists in bookmarks
 		if (bookmarks.includes(postId)) {
+			// If we only have 1 bookmark
+			if (bookmarks.length === 1) {
+				bookmarks.length = 0;
+				setBookmarks(bookmarks);
+				return;
+			}
 			// Remove from bookmarks
 			setBookmarks(bookmarks.filter(id => id != postId));
+
 			return;
 		}
 		// Add post to bookmarks
@@ -28,9 +35,6 @@ export default function PostItemComponent({ post, index }) {
 
 	return (
 		<li className={'item-post ' + ((index % 2 !== 0 && 'mod-alt') || '')}>
-			<div className="meta">
-				<div className="score">{post.score}p</div>
-			</div>
 			<div className="title">
 				<h3>
 					<a
@@ -43,7 +47,10 @@ export default function PostItemComponent({ post, index }) {
 				</h3>
 				<ul className="list-meta">
 					<li className="item-meta">
-						Posted by{' '}
+						<strong>+{post.score}</strong>
+					</li>
+					<li className="item-meta">
+						by{' '}
 						<a
 							href={'https://news.ycombinator.com/user?id=' + post.by}
 							target="_blank"
@@ -57,9 +64,6 @@ export default function PostItemComponent({ post, index }) {
 							{post.time}
 						</Moment>
 					</li>
-					{post.domain && (
-						<li className="item-meta mod-domain">{post.domain}</li>
-					)}
 				</ul>
 			</div>
 			<ul className="list-actions">

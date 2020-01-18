@@ -7,7 +7,10 @@ export default function HeaderComponent() {
 	return (
 		<header className="header-main">
 			<a href="/" className="logo">
-				<div className="text">HN</div>
+				<div className="text">
+					<span className="brackets">[</span>HN
+					<span className="brackets">]</span>
+				</div>
 			</a>
 			<nav className="nav-main">
 				<ul className="list-nav">
