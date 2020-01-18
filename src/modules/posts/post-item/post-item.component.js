@@ -21,11 +21,11 @@ export default function PostItemComponent({ post, index }) {
 			// If we only have 1 bookmark
 			if (bookmarks.length === 1) {
 				bookmarks.length = 0;
-				setBookmarks(bookmarks);
+				setBookmarks(bookmarks.filter(id => id !== postId));
 				return;
 			}
 			// Remove from bookmarks
-			setBookmarks(bookmarks.filter(id => id != postId));
+			setBookmarks(bookmarks.filter(id => id !== postId));
 
 			return;
 		}

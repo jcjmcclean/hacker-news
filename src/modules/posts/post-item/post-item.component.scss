@@ -11,25 +11,6 @@ li.item-post {
 		background: $color-neutral;
 	}
 
-	.meta {
-		width: 60px;
-		display: flex;
-		flex-shrink: 0;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-
-		@include mq(tablet-down) {
-			width: 50px;
-			margin: 0 5px;
-		}
-
-		.score {
-			font-size: $font-size-large;
-			color: $color-text-light;
-		}
-	}
-
 	.title {
 		padding: 0 25px;
 

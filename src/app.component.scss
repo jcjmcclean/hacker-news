@@ -1,5 +1,5 @@
 .wrapper {
-	padding: 50px 10% 0;
+	padding: 50px calc(10% - 25px) 0;
 
 	@include mq(tablet-down) {
 		padding: 50px 0 0 0;

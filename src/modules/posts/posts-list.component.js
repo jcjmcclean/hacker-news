@@ -28,7 +28,7 @@ export default function PostsListComponent({ mode }) {
 	const [more, setMore] = React.useState(true);
 
 	// Create bookmarks state
-	const [bookmarks, setBookmarks] = BookmarksState([]);
+	const [bookmarks] = BookmarksState([]);
 
 	/** Get posts data */
 	const fetchData = React.useCallback(
@@ -37,7 +37,7 @@ export default function PostsListComponent({ mode }) {
 			let postIds;
 
 			// If we need to show saved posts
-			if (type == 'saved') {
+			if (type === 'saved') {
 				postIds = {
 					data: bookmarks
 				};
@@ -122,7 +122,10 @@ export default function PostsListComponent({ mode }) {
 			endMessage={<p className="end">End of {mode} posts.</p>}
 		>
 			{posts.map(function(post, index) {
-				return <PostItemComponent key={index} post={post} index={index} />;
+				return mode !== 'saved' ||
+					(mode === 'saved' && bookmarks.includes(post.id)) ? (
+					<PostItemComponent key={index} post={post} index={index} />
+				) : null;
 			})}
 		</InfiniteScroll>
 	);
