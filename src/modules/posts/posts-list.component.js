@@ -9,6 +9,9 @@ export default function PostsListComponent({ mode }) {
 	// Set number of items per page
 	const itemsPerPage = 10;
 
+	// Create state for loading
+	const [loading, setLoading] = React.useState(true);
+
 	// Create ref to store previous mode
 	const prevModeRef = React.useRef();
 	// Set prevmode
@@ -64,6 +67,9 @@ export default function PostsListComponent({ mode }) {
 					posts.push(post);
 					// Set posts state
 					setPosts([...posts]);
+
+					// Set loading state to false
+					setLoading(false);
 				}
 			});
 		},
@@ -76,44 +82,70 @@ export default function PostsListComponent({ mode }) {
 		setOffset(offset + itemsPerPage);
 	};
 
+	/** Handle resetting posts */
+	const handleReset = () => {
+		console.log('handleReset');
+
+		// Set loading state to true
+		setLoading(true);
+
+		// Reset posts array
+		posts.length = 0;
+		setPosts(posts);
+
+		// Reset offset
+		setOffset(0);
+
+		// Fetch data again
+		fetchData(mode);
+	};
+
 	// On component mount
 	React.useEffect(() => {
 		// If offset change isn't due to a mode change
 		if (!prevMode || prevMode === mode) {
+			// Set loading state to true
+			setLoading(true);
+			// Fetch posts
 			fetchData(mode);
 		}
 	}, [offset]);
 
 	// On component mount
 	React.useEffect(() => {
+		// Set loading state to true
+		setLoading(true);
+
 		// Update prev mode
 		prevModeRef.current = mode;
 
 		// If mode has changed from previous
 		if (prevMode && prevMode !== mode) {
-			// Reset posts array
-			posts.length = 0;
-			setPosts(posts);
-
-			// Reset offset
-			setOffset(0);
-
-			// Fetch data again
-			fetchData(mode);
+			handleReset();
 		}
 	}, [mode]);
 
 	return (
-		<InfiniteScroll
-			dataLength={posts.length}
-			next={handleScroll}
-			hasMore={more}
-			loader={<p className="loading">Loading...</p>}
-			endMessage={<p className="end">End of {mode} posts.</p>}
-		>
-			{posts.map(function(post, index) {
-				return <PostItemComponent key={index} post={post} />;
-			})}
-		</InfiniteScroll>
+		<>
+			{loading && (
+				<div className="loader">
+					<div className="la-square-jelly-box la-dark la-3x">
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+			)}
+			<InfiniteScroll
+				dataLength={posts.length}
+				next={handleScroll}
+				hasMore={more}
+				loader={<p className="loading">Loading...</p>}
+				endMessage={<p className="end">End of {mode} posts.</p>}
+			>
+				{posts.map(function(post, index) {
+					return <PostItemComponent key={index} post={post} />;
+				})}
+			</InfiniteScroll>
+		</>
 	);
 }

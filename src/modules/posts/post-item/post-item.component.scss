@@ -74,10 +74,17 @@ li.item-post {
 					border-right: none;
 				}
 
+				&.mod-domain {
+					@include mq(tablet-down) {
+						display: none;
+					}
+				}
+
 				&.mod-score {
 					display: none;
 
 					@include mq(tablet-down) {
+						margin-right: 10px;
 						display: block;
 						color: $color-primary;
 					}

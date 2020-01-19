@@ -25,6 +25,10 @@
 			justify-content: flex-start;
 			text-decoration: none;
 
+			@include mq(tablet-down) {
+				padding-left: 10px;
+			}
+
 			.text {
 				color: $color-primary;
 				font-size: $font-size-logo;
