@@ -104,8 +104,6 @@ export default function PostsListComponent({ mode }) {
 	React.useEffect(() => {
 		// If offset change isn't due to a mode change
 		if (!prevMode || prevMode === mode) {
-			// Set loading state to true
-			setLoading(true);
 			// Fetch posts
 			fetchData(mode);
 		}
