@@ -7,7 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 /** Renders posts list component */
 export default function PostsListComponent({ mode }) {
 	// Set number of items per page
-	const itemsPerPage = 10;
+	const itemsPerPage = 20;
 
 	// Create state for loading
 	const [loading, setLoading] = React.useState(true);
