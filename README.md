@@ -18,11 +18,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Build instructions
 
-To build this project for production, run `npm run build` from the project root in your terminal.
+To build this project for production, install project dependencies with `npm install` then run `npm run build` from the project root in your terminal.
 
 ## Development instructions
 
-To host a local copy of this project for development, run `npm start` from the project root in your terminal.
+To host a local copy of this project for development, install project dependencies with `npm install` then run `npm start` from the project root in your terminal.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The browser will reload for all changes to the codebase.
 
