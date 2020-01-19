@@ -2,8 +2,8 @@
 	width: 100%;
 	background: linear-gradient(
 		45deg,
-		$color-primary-light 0%,
-		$color-primary-lighter 100%
+		$color-neutral-dark 0%,
+		lighten($color-neutral-dark, 15%) 100%
 	);
 	position: fixed;
 	top: 0;
@@ -19,15 +19,14 @@
 
 		.logo {
 			height: 60px;
-			padding: 0 5px;
+			padding: 0;
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			background: $color-primary;
+			justify-content: flex-start;
 			text-decoration: none;
 
 			.text {
-				color: $color-white;
+				color: $color-primary;
 				font-size: $font-size-logo;
 				font-weight: $font-weight-bold;
 				transition: transform 0.3s ease-in;
