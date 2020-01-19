@@ -1,12 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import createPersistedState from 'use-persisted-state';
 import './posts-list.component.scss';
 import PostItemComponent from './post-item/post-item.component';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
-// Persist bookmarks state to local storage
-const BookmarksState = createPersistedState('bookmarks');
 
 /** Renders posts list component */
 export default function PostsListComponent({ mode }) {
@@ -27,26 +23,13 @@ export default function PostsListComponent({ mode }) {
 	// Create state for end of posts
 	const [more, setMore] = React.useState(true);
 
-	// Create bookmarks state
-	const [bookmarks] = BookmarksState([]);
-
 	/** Get posts data */
 	const fetchData = React.useCallback(
 		async type => {
-			// Store for ids of posts
-			let postIds;
-
-			// If we need to show saved posts
-			if (type === 'saved') {
-				postIds = {
-					data: bookmarks
-				};
-			} else {
-				// Get post ids from hn
-				postIds = await axios.get(
-					'https://hacker-news.firebaseio.com/v0/' + type + 'stories.json'
-				);
-			}
+			// Get post ids from hn
+			const postIds = await axios.get(
+				'https://hacker-news.firebaseio.com/v0/' + type + 'stories.json'
+			);
 
 			// Paginate
 			postIds.data = postIds.data.slice(offset, offset + itemsPerPage);
@@ -69,6 +52,13 @@ export default function PostsListComponent({ mode }) {
 				if (postResponse && postResponse.data) {
 					// Set post from response data
 					const post = postResponse.data;
+
+					// If this is a link post
+					if (post.url) {
+						// Get domain and add to post
+						const matches = post.url.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
+						post.domain = matches && matches[1];
+					}
 
 					// Push to posts array
 					posts.push(post);
@@ -122,10 +112,7 @@ export default function PostsListComponent({ mode }) {
 			endMessage={<p className="end">End of {mode} posts.</p>}
 		>
 			{posts.map(function(post, index) {
-				return mode !== 'saved' ||
-					(mode === 'saved' && bookmarks.includes(post.id)) ? (
-					<PostItemComponent key={index} post={post} index={index} />
-				) : null;
+				return <PostItemComponent key={index} post={post} />;
 			})}
 		</InfiniteScroll>
 	);

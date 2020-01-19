@@ -5,7 +5,7 @@ $color-black: #000000;
 $color-white: #ffffff;
 
 // Page body background
-$color-body: $color-white;
+$color-body: #f8f9fb;
 
 // Neutral background colours
 $color-neutral: #f8f8f8;
@@ -18,16 +18,17 @@ $color-text-lighter: #aaaaaa;
 
 // Border colour
 $color-borders: #cccccc;
+$color-borders-light: #f2f2f2;
 
 // Primary brand colours
 $color-primary: #ff6600;
-$color-primary-light: #ff751a;
-$color-primary-lighter: #ff944d;
+$color-primary-light: lighten($color-primary, 5%);
+$color-primary-lighter: lighten($color-primary, 15%);
 
 // Link colours
-$color-link: $color-primary-light;
-$color-link-hover: lighten($color-link, 5%);
-$color-link-active: lighten($color-link, 10%);
+$color-link: $color-black;
+$color-link-hover: lighten($color-link, 15%);
+$color-link-active: lighten($color-link, 30%);
 
 /* FONTS */
 
@@ -47,6 +48,7 @@ $font-size-logo: 28 / $font-base * 1rem;
 
 // Font weights
 $font-weight-regular: 400;
+$font-weight-medium: 500;
 $font-weight-bold: 600;
 
 // Line heights

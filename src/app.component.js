@@ -16,8 +16,14 @@ export default function AppComponent() {
 					<Route exact path="/top">
 						<PostsListComponent mode="top" />
 					</Route>
-					<Route exact path="/saved">
-						<PostsListComponent mode="saved" />
+					<Route exact path="/ask">
+						<PostsListComponent mode="ask" />
+					</Route>
+					<Route exact path="/show">
+						<PostsListComponent mode="show" />
+					</Route>
+					<Route exact path="/jobs">
+						<PostsListComponent mode="job" />
 					</Route>
 				</Switch>
 			</div>

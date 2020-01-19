@@ -1,14 +1,31 @@
 li.item-post {
 	display: flex;
 	align-items: center;
-	padding: 20px 0;
+	padding: 25px 0 25px 22px;
+	border-bottom: 1px solid $color-borders-light;
+	position: relative;
 
 	@include mq(tablet-down) {
-		padding: 10px 0;
+		padding: 25px 0;
 	}
 
-	&.mod-alt {
-		background: $color-neutral;
+	.points {
+		width: 44px;
+		height: 44px;
+		font-size: $font-size-standard;
+		border-radius: 50%;
+		background: $color-primary;
+		color: $color-white;
+		position: absolute;
+		top: 22px;
+		left: -22px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@include mq(tablet-down) {
+			display: none;
+		}
 	}
 
 	.title {
@@ -21,7 +38,11 @@ li.item-post {
 		h3 {
 			margin: 0 0 5px 0;
 			font-size: $font-size-large;
-			font-weight: $font-weight-regular;
+			font-weight: $font-weight-medium;
+
+			a {
+				color: $color-black;
+			}
 		}
 
 		ul.list-meta {
@@ -51,6 +72,15 @@ li.item-post {
 					margin-right: 0;
 					padding-right: 0;
 					border-right: none;
+				}
+
+				&.mod-score {
+					display: none;
+
+					@include mq(tablet-down) {
+						display: block;
+						color: $color-primary;
+					}
 				}
 
 				a {
@@ -85,6 +115,8 @@ li.item-post {
 				align-items: center;
 
 				&:hover {
+					text-decoration: none;
+
 					[class^='icon-'] {
 						fill: $color-primary;
 					}

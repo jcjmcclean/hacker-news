@@ -1,7 +1,10 @@
 .wrapper {
-	padding: 50px calc(10% - 25px) 0;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 50px 0 0;
+	background: $color-white;
 
 	@include mq(tablet-down) {
-		padding: 50px 0 0 0;
+		padding: 50px 0 0;
 	}
 }
