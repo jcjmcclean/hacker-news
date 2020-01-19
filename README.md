@@ -29,3 +29,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. T
 ## Deployment instructions
 
 This project's master branch is hooked up to Netlify, deployments are automatically created when committing to master. Please submit a pull request if you have anything useful to add to the project.
+
+This project also contains a `Dockerfile` and `docker-compose.yaml` file, which will allow it to be hosted anywhere that Docker is supported. You can serve the production version locally by running `docker-compose up` from the project root in your terminal. It will then be available by default on http://localhost:80.
