@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import './posts-list.component.scss';
-import PostItemComponent from './post-item/post-item.component';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import PostsListComponent from '../posts/posts-list/posts-list.component';
+import PostsLoaderComponent from '../posts/posts-loader/posts-loader.component';
 
-/** Renders posts list component */
-export default function PostsListComponent({ mode }) {
+/** Renders feed page component */
+export default function FeedPage({ mode }) {
 	// Set number of items per page
 	const itemsPerPage = 20;
 
@@ -73,6 +72,7 @@ export default function PostsListComponent({ mode }) {
 				}
 			});
 		},
+		// eslint-disable-next-line
 		[offset, posts]
 	);
 
@@ -107,6 +107,7 @@ export default function PostsListComponent({ mode }) {
 			// Fetch posts
 			fetchData(mode);
 		}
+		// eslint-disable-next-line
 	}, [offset]);
 
 	// On component mount
@@ -121,29 +122,15 @@ export default function PostsListComponent({ mode }) {
 		if (prevMode && prevMode !== mode) {
 			handleReset();
 		}
+		// eslint-disable-next-line
 	}, [mode]);
 
 	return (
 		<>
 			{loading && (
-				<div className="loader">
-					<div className="la-square-jelly-box la-dark la-3x">
-						<div></div>
-						<div></div>
-					</div>
-				</div>
+				<PostsLoaderComponent />
 			)}
-			<InfiniteScroll
-				dataLength={posts.length}
-				next={handleScroll}
-				hasMore={more}
-				loader={<p className="loading">Loading...</p>}
-				endMessage={<p className="end">End of {mode} posts.</p>}
-			>
-				{posts.map(function(post, index) {
-					return <PostItemComponent key={index} post={post} />;
-				})}
-			</InfiniteScroll>
+			<PostsListComponent mode={mode} posts={posts} handleScroll={handleScroll} more={more} />
 		</>
 	);
 }

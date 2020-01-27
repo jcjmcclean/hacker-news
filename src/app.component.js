@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './app.component.scss';
 import HeaderComponent from './modules/common/header/header.component';
-import PostsListComponent from './modules/posts/posts-list.component';
+import FeedPage from './modules/feed/feed.page';
 
 export default function AppComponent() {
 	return (
@@ -11,19 +11,19 @@ export default function AppComponent() {
 			<div className="wrapper">
 				<Switch>
 					<Route exact path="/">
-						<PostsListComponent mode="new" />
+						<FeedPage mode="new" />
 					</Route>
 					<Route exact path="/top">
-						<PostsListComponent mode="top" />
+						<FeedPage mode="top" />
 					</Route>
 					<Route exact path="/ask">
-						<PostsListComponent mode="ask" />
+						<FeedPage mode="ask" />
 					</Route>
 					<Route exact path="/show">
-						<PostsListComponent mode="show" />
+						<FeedPage mode="show" />
 					</Route>
 					<Route exact path="/jobs">
-						<PostsListComponent mode="job" />
+						<FeedPage mode="job" />
 					</Route>
 				</Switch>
 			</div>
